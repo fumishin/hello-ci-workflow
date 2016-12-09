@@ -3,6 +3,12 @@ machine:
     node:
         version: 6.9.1
 
+#test:
+#    override:
+#        - ./node_modules/.bin/mocha
+
 test:
-    override:
-        - ./node_modules/.bin/mocha
+  override:
+    - mocha test --reporter mocha-junit-reporter:
+        environment:
+          MOCHA_FILE: $CIRCLE_TEST_REPORTS/junit/test-results.xml
